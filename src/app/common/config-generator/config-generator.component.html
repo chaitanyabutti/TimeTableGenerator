@@ -1,0 +1,368 @@
+<button color="primary" mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+    {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+  </button>
+  <mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-step>
+      <!-- <form [formGroup]="firstFormGroup"> -->
+        <ng-template matStepLabel>Create configuration</ng-template>
+        <mat-form-field>
+            <mat-label>Configuration name</mat-label>
+          <input matInput placeholder="Configuration name" required [(ngModel)]="totalArray.name">
+        </mat-form-field>
+        <div>
+          <button color="primary" mat-raised-button matStepperNext>Next</button>
+        </div>
+      <!-- </form> -->
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Days</ng-template>
+        <mat-card style="margin-bottom: 20px" class="mat-elevation-z0">
+            <section *ngFor="let day of totalArray.days; let i = index;">
+                  <mat-form-field style="margin-right: 15px">
+                    <mat-label>Name</mat-label>
+                    <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.days[i].name">
+                  </mat-form-field>
+                  <mat-form-field style="margin-right: 15px">
+                    <mat-label>Short Name</mat-label>
+                    <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.days[i].shortName">
+                  </mat-form-field>
+      <button style="margin-right: 15px" mat-icon-button color="primary" (click)="addButton('days',i)">
+        <mat-icon>add</mat-icon>
+      </button>
+      <button style="margin-right: 15px" mat-icon-button color="primary" (click)="removeButton('days',i)">
+          <mat-icon>remove</mat-icon>
+        </button>
+            </section>
+      </mat-card>
+        <div>
+          <button style="margin-right: 15px" color="primary" mat-raised-button matStepperPrevious>Back</button>
+          <button style="margin-right: 15px" color="primary" mat-raised-button matStepperNext>Next</button>
+        </div>
+    </mat-step>
+    <mat-step>
+      <!-- <form> -->
+        <ng-template matStepLabel>Periods</ng-template>
+        <mat-card style="margin-bottom: 20px" class="mat-elevation-z0">
+            <section *ngFor="let period of totalArray.periods; let i = index;">
+        <mat-form-field style="margin-right: 15px">
+          <mat-label>Period Name</mat-label>
+          <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.periods[i].name">
+          <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+          <!-- <mat-hint>Hint</mat-hint> -->
+        </mat-form-field>
+      <mat-form-field style="margin-right: 15px">
+        <mat-label>Short Name</mat-label>
+        <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.periods[i].shortName">
+        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+        <!-- <mat-hint>Hint</mat-hint> -->
+      </mat-form-field>
+      <mat-form-field style="margin-right: 15px">
+        <mat-label>Start Time</mat-label>
+        <input type="time" matInput placeholder="Placeholder" [(ngModel)]="totalArray.periods[i].startTime">
+        <!-- <w-mat-timepicker color="primary" [(userTime)]="totalArray.periods[i].startTime"></w-mat-timepicker> -->
+        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+        <!-- <mat-hint>Hint</mat-hint> -->
+      </mat-form-field>
+      <mat-form-field style="margin-right: 15px">
+        <mat-label>End Time</mat-label>
+        <input type="time"  matInput placeholder="Placeholder" [(ngModel)]="totalArray.periods[i].endTime">
+        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+        <!-- <mat-hint>Hint</mat-hint> -->
+      </mat-form-field>
+      <button style="margin-right: 15px" mat-icon-button color="primary" (click)="addButton('periods',i)">
+        <mat-icon>add</mat-icon>
+      </button>
+      <button style="margin-right: 15px" mat-icon-button color="primary" (click)="removeButton('periods',i)">
+          <mat-icon>remove</mat-icon>
+        </button>
+            </section>
+      </mat-card>
+        <div>
+          <button style="margin-right: 15px" color="primary" mat-raised-button matStepperPrevious>Back</button>
+          <button style="margin-right: 15px" color="primary" mat-raised-button matStepperNext>Next</button>
+        </div>
+      <!-- </form> -->
+    </mat-step>
+    <mat-step>
+      <!-- <form> -->
+        <ng-template matStepLabel>Subjects</ng-template>
+        <mat-card style="margin-bottom: 20px" class="mat-elevation-z0">
+            <section *ngFor="let subject of totalArray.subjects; let i = index;">
+                <mat-form-field style="margin-right: 15px">
+                    <mat-label>Subject Code</mat-label>
+                    <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.subjects[i].code">
+                    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                    <!-- <mat-hint>T</mat-hint> -->
+                  </mat-form-field>
+        <mat-form-field style="margin-right: 15px">
+          <mat-label>Subject Name</mat-label>
+          <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.subjects[i].name">
+          <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+          <!-- <mat-hint>Hint</mat-hint> -->
+        </mat-form-field>
+        <mat-form-field style="margin-right: 15px">
+          <mat-label>Subject Short Name</mat-label>
+          <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.subjects[i].shortName">
+          <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+          <!-- <mat-hint>Hint</mat-hint> -->
+        </mat-form-field>
+        <mat-checkbox style="margin-right: 15px" [(ngModel)]="totalArray.subjects[i].moreThanOncePerDay">More than once per day?</mat-checkbox>
+        <mat-checkbox style="margin-right: 15px" [(ngModel)]="totalArray.subjects[i].dayOff2TImesAWeek">Day off 2 times a wekk?</mat-checkbox>
+      <button style="margin-right: 15px" mat-icon-button color="primary" (click)="addButton('subjects',i)">
+        <mat-icon>add</mat-icon>
+      </button>
+      <button style="margin-right: 15px" mat-icon-button color="primary" (click)="removeButton('subjects',i)">
+          <mat-icon>remove</mat-icon>
+        </button>
+            </section>
+      </mat-card>
+        <div>
+          <button style="margin-right: 15px" color="primary" mat-raised-button matStepperPrevious>Back</button>
+          <button style="margin-right: 15px" color="primary" mat-raised-button matStepperNext>Next</button>
+        </div>
+      <!-- </form> -->
+    </mat-step>
+    <mat-step>
+      <!-- <form [formGroup]="thirdFormGroup"> -->
+        <ng-template matStepLabel>Rooms</ng-template>
+        <mat-card style="margin-bottom: 20px" class="mat-elevation-z0">
+            <section *ngFor="let room of totalArray.rooms; let i = index;">
+                <mat-form-field style="margin-right: 15px">
+                    <mat-label>Room Name</mat-label>
+                    <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.rooms[i].name">
+                    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                    <!-- <mat-hint>T</mat-hint> -->
+                  </mat-form-field>
+        <mat-form-field style="margin-right: 15px">
+          <mat-label>Room Short Name</mat-label>
+          <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.rooms[i].shortName">
+          <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+          <!-- <mat-hint>Hint</mat-hint> -->
+        </mat-form-field>
+      <mat-form-field style="margin-right: 15px">
+        <mat-label>Capacity</mat-label>
+        <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.rooms[i].capacity">
+        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+        <!-- <mat-hint>Hint</mat-hint> -->
+      </mat-form-field>
+      <mat-form-field style="margin-right: 15px">
+        <mat-label>Building</mat-label>
+        <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.rooms[i].building">
+        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+        <!-- <mat-hint>Hint</mat-hint> -->
+      </mat-form-field>
+      <button style="margin-right: 15px" mat-icon-button color="primary" (click)="addButton('rooms',i)">
+        <mat-icon>add</mat-icon>
+      </button>
+      <button style="margin-right: 15px" mat-icon-button color="primary" (click)="removeButton('rooms',i)">
+          <mat-icon>remove</mat-icon>
+        </button>
+            </section>
+      </mat-card>
+        <!-- <mat-form-field>
+          <input matInput placeholder="Address" required>
+        </mat-form-field> -->
+        <div>
+          <button style="margin-right: 15px" color="primary" mat-raised-button matStepperPrevious>Back</button>
+          <button style="margin-right: 15px" color="primary" mat-raised-button matStepperNext>Next</button>
+        </div>
+      <!-- </form> -->
+    </mat-step>
+    <mat-step>
+      <!-- <form [formGroup]="thirdFormGroup"> -->
+        <ng-template matStepLabel>Teachers</ng-template>
+        <mat-card style="margin-bottom: 20px" class="mat-elevation-z0">
+            <section *ngFor="let teacher of totalArray.teachers; let i = index;">
+                <mat-form-field style="margin-right: 15px">
+                    <mat-label>Teacher Name</mat-label>
+                    <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.teachers[i].name">
+                    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                    <!-- <mat-hint>T</mat-hint> -->
+                  </mat-form-field>
+                  <mat-form-field style="margin-right: 15px">
+                    <mat-label>Teacher Short Name</mat-label>
+                    <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.teachers[i].shortName">
+                    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                    <!-- <mat-hint>T</mat-hint> -->
+                  </mat-form-field>
+                  <mat-form-field style="margin-right: 15px">
+                    <mat-label>Max activities in a row</mat-label>
+                    <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.teachers[i].maxActivitiesInARow">
+                    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                    <!-- <mat-hint>T</mat-hint> -->
+                  </mat-form-field>
+                  <mat-form-field style="margin-right: 15px">
+                    <mat-label>Max gaps per cycle</mat-label>
+                    <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.teachers[i].maxGapsPerCycle">
+                    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                    <!-- <mat-hint>T</mat-hint> -->
+                  </mat-form-field>                  
+                  <mat-form-field style="margin-right: 15px">
+                    <mat-label>Max gaps once per day</mat-label>
+                    <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.teachers[i].maxGapsOncePerDay">
+                    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                    <!-- <mat-hint>T</mat-hint> -->
+                  </mat-form-field>
+                  <mat-checkbox style="margin-right: 15px" [(ngModel)]="totalArray.teachers[i].dayOff2TimesAWeek">Day off 2 times a week?</mat-checkbox>
+        <!-- <section style="margin-right: 15px">
+          <mat-checkbox [(ngModel)]="totalArray.teachers[i].dayOff2TimesAWeek">Day off 2 times a week?</mat-checkbox>
+        </section> -->
+      <button style="margin-right: 15px" mat-icon-button color="primary" (click)="addButton('teachers',i)">
+        <mat-icon>add</mat-icon>
+      </button>
+      <button style="margin-right: 15px" mat-icon-button color="primary" (click)="removeButton('teachers',i)">
+          <mat-icon>remove</mat-icon>
+        </button>
+            </section>
+      </mat-card>
+        <!-- <mat-form-field>
+          <input matInput placeholder="Address" required>
+        </mat-form-field> -->
+        <div>
+          <button style="margin-right: 15px" color="primary" mat-raised-button matStepperPrevious>Back</button>
+          <button style="margin-right: 15px" color="primary" mat-raised-button matStepperNext>Next</button>
+        </div>
+      <!-- </form> -->
+    </mat-step>
+    <mat-step>
+        <!-- <form [formGroup]="thirdFormGroup"> -->
+          <ng-template matStepLabel>Classes</ng-template>
+          <mat-card style="margin-bottom: 20px" class="mat-elevation-z0">
+              <section *ngFor="let teacher of totalArray.classes; let i = index;">
+                  <mat-form-field style="margin-right: 15px">
+                      <mat-label>Class Name</mat-label>
+                      <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.classes[i].name">
+                      <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                      <!-- <mat-hint>T</mat-hint> -->
+                    </mat-form-field>
+                    <mat-form-field style="margin-right: 15px">
+                      <mat-label>Class Short Name</mat-label>
+                      <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.classes[i].shortName">
+                      <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                      <!-- <mat-hint>T</mat-hint> -->
+                    </mat-form-field>
+                    <mat-form-field style="margin-right: 15px">
+                        <mat-label>Max allowed difference</mat-label>
+                        <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.classes[i].maxAllowedDifference">
+                        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                        <!-- <mat-hint>T</mat-hint> -->
+                      </mat-form-field>
+                    <mat-checkbox style="margin-right: 15px" [(ngModel)]="totalArray.classes[i].startOn1stPeriod">Start on 1st Period?</mat-checkbox>
+                    <mat-checkbox style="margin-right: 15px" [(ngModel)]="totalArray.classes[i].noGapsAllowed">No period gaps?</mat-checkbox>
+        <button style="margin-right: 15px" mat-icon-button color="primary" (click)="addButton('classes',i)">
+          <mat-icon>add</mat-icon>
+        </button>
+        <button style="margin-right: 15px" mat-icon-button color="primary" (click)="removeButton('classes',i)">
+            <mat-icon>remove</mat-icon>
+          </button>
+              </section>
+        </mat-card>
+          <!-- <mat-form-field>
+            <input matInput placeholder="Address" required>
+          </mat-form-field> -->
+          <div>
+            <button style="margin-right: 15px" color="primary" mat-raised-button matStepperPrevious>Back</button>
+            <button style="margin-right: 15px" color="primary" mat-raised-button matStepperNext>Next</button>
+          </div>
+        <!-- </form> -->
+      </mat-step>
+    <mat-step>
+      <!-- <form [formGroup]="fifthFormGroup"> -->
+        <ng-template matStepLabel>Activities</ng-template>
+        <mat-card style="margin-bottom: 20px" class="mat-elevation-z0">
+          <section *ngFor="let subject of totalArray.activities; let i = index;">
+        <mat-form-field style="margin-right: 15px">
+          <mat-label>Teacher</mat-label>
+          <!-- <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.teachers[i].maxGapsOncePerDay"> -->
+          <mat-select [(ngModel)]="totalArray.activities[i].teacher" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let teacher of totalArray.teachers; let i = index;" [value]="teacher">
+              {{teacher.name}}
+            </mat-option>
+          </mat-select>
+          <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+          <!-- <mat-hint>T</mat-hint> -->
+        </mat-form-field>
+        <mat-form-field style="margin-right: 15px">
+          <mat-label>Subject</mat-label>
+          <!-- <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.teachers[i].maxGapsOncePerDay"> -->
+          <mat-select [(ngModel)]="totalArray.activities[i].subject" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let subject of totalArray.subjects; let i = index;" [value]="subject">
+              {{subject.name}}
+            </mat-option>
+          </mat-select>
+          <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+          <!-- <mat-hint>T</mat-hint> -->
+        </mat-form-field>
+        <mat-form-field style="margin-right: 15px">
+          <mat-label>Class</mat-label>
+          <!-- <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.teachers[i].maxGapsOncePerDay"> -->
+          <mat-select [(ngModel)]="totalArray.activities[i].class" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let class of totalArray.classes; let i = index;" [value]="class">
+              {{class.name}}
+            </mat-option>
+          </mat-select>
+          <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+          <!-- <mat-hint>T</mat-hint> -->
+        </mat-form-field>
+        <mat-form-field style="margin-right: 15px">
+          <mat-label>Activities per cycle</mat-label>
+          <input matInput placeholder="Activities per cycle" [(ngModel)]="totalArray.activities[i].activitiesPerCyle">
+          <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+          <!-- <mat-hint>T</mat-hint> -->
+        </mat-form-field>
+        <!-- <mat-form-field style="margin-right: 15px"> -->
+            <!-- <mat-label>Activities per cycle</mat-label> -->
+            <!-- <input matInput placeholder="Activities per cycle" [(ngModel)]="totalArray.activities[i].activitiesPerCyle"> -->
+            <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+            <!-- <mat-hint>T</mat-hint> -->
+          <!-- </mat-form-field> -->
+        <mat-form-field style="margin-right: 15px">
+          <mat-label>Desired Room</mat-label>
+          <!-- <input matInput placeholder="Activities per cycle" [(ngModel)]="totalArray.teachers[i].maxGapsOncePerDay"> -->
+          <mat-select [(ngModel)]="totalArray.activities[i].desiredRoom" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let room of totalArray.rooms; let i = index;" [value]="room">
+              {{room.name}}
+            </mat-option>
+          </mat-select>
+          <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+          <!-- <mat-hint>T</mat-hint> -->
+        </mat-form-field>
+        <mat-form-field style="margin-right: 15px">
+          <mat-label>Alternate Room</mat-label>
+          <!-- <input matInput placeholder="Activities per cycle" [(ngModel)]="totalArray.teachers[i].maxGapsOncePerDay"> -->
+          <mat-select [(ngModel)]="totalArray.activities[i].alternateRoom" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let room of totalArray.rooms; let i = index;" [value]="rooms">
+              {{room.name}}
+            </mat-option>
+          </mat-select>
+          <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+          <!-- <mat-hint>T</mat-hint> -->
+        </mat-form-field>
+        <button style="margin-right: 15px" mat-icon-button color="primary" (click)="addButton('activities',i)">
+          <mat-icon>add</mat-icon>
+        </button>
+        <button style="margin-right: 15px" mat-icon-button color="primary" (click)="removeButton('activities',i)">
+            <mat-icon>remove</mat-icon>
+          </button>
+          </section>
+        </mat-card>
+        <div>
+          <button style="margin-right: 15px" color="primary" mat-raised-button matStepperPrevious>Back</button>
+          <button style="margin-right: 15px" color="primary" mat-raised-button matStepperNext>Next</button>
+        </div>
+      <!-- </form> -->
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      You are now done.
+      <div>
+        <button style="margin-right: 15px" color="primary" mat-raised-button matStepperPrevious>Back</button>
+        <button style="margin-right: 15px" color="primary" mat-raised-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
