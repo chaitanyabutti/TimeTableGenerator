@@ -7,7 +7,7 @@
         <ng-template matStepLabel>Create configuration</ng-template>
         <mat-form-field>
             <mat-label>Configuration name</mat-label>
-          <input matInput placeholder="Configuration name" required [(ngModel)]="totalArray.name">
+          <input type="text" matInput placeholder="Configuration name" required [(ngModel)]="totalArray.name">
         </mat-form-field>
         <div>
           <button color="primary" mat-raised-button matStepperNext>Next</button>
@@ -20,13 +20,13 @@
             <section *ngFor="let day of totalArray.days; let i = index;">
                   <mat-form-field style="margin-right: 15px">
                     <mat-label>Name</mat-label>
-                    <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.days[i].name">
+                    <input type="text" matInput placeholder="Placeholder" [(ngModel)]="totalArray.days[i].name">
                   </mat-form-field>
                   <mat-form-field style="margin-right: 15px">
                     <mat-label>Short Name</mat-label>
-                    <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.days[i].shortName">
+                    <input type="text" matInput placeholder="Placeholder" [(ngModel)]="totalArray.days[i].shortName">
                   </mat-form-field>
-      <button style="margin-right: 15px" mat-icon-button color="primary" (click)="addButton('days',i)">
+      <button *ngIf="i == totalArray.days.length -1" style="margin-right: 15px" mat-icon-button color="primary" (click)="addButton('days',i)">
         <mat-icon>add</mat-icon>
       </button>
       <button style="margin-right: 15px" mat-icon-button color="primary" (click)="removeButton('days',i)">
@@ -46,13 +46,13 @@
             <section *ngFor="let period of totalArray.periods; let i = index;">
         <mat-form-field style="margin-right: 15px">
           <mat-label>Period Name</mat-label>
-          <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.periods[i].name">
+          <input type="text" matInput placeholder="Placeholder" [(ngModel)]="totalArray.periods[i].name">
           <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
           <!-- <mat-hint>Hint</mat-hint> -->
         </mat-form-field>
       <mat-form-field style="margin-right: 15px">
         <mat-label>Short Name</mat-label>
-        <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.periods[i].shortName">
+        <input type="text" matInput placeholder="Placeholder" [(ngModel)]="totalArray.periods[i].shortName">
         <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
         <!-- <mat-hint>Hint</mat-hint> -->
       </mat-form-field>
@@ -69,7 +69,7 @@
         <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
         <!-- <mat-hint>Hint</mat-hint> -->
       </mat-form-field>
-      <button style="margin-right: 15px" mat-icon-button color="primary" (click)="addButton('periods',i)">
+      <button *ngIf="i == totalArray.periods.length -1" style="margin-right: 15px" mat-icon-button color="primary" (click)="addButton('periods',i)">
         <mat-icon>add</mat-icon>
       </button>
       <button style="margin-right: 15px" mat-icon-button color="primary" (click)="removeButton('periods',i)">
@@ -90,25 +90,25 @@
             <section *ngFor="let subject of totalArray.subjects; let i = index;">
                 <mat-form-field style="margin-right: 15px">
                     <mat-label>Subject Code</mat-label>
-                    <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.subjects[i].code">
+                    <input type="text" matInput placeholder="Placeholder" [(ngModel)]="totalArray.subjects[i].code">
                     <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
                     <!-- <mat-hint>T</mat-hint> -->
                   </mat-form-field>
         <mat-form-field style="margin-right: 15px">
           <mat-label>Subject Name</mat-label>
-          <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.subjects[i].name">
+          <input type="text" matInput placeholder="Placeholder" [(ngModel)]="totalArray.subjects[i].name">
           <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
           <!-- <mat-hint>Hint</mat-hint> -->
         </mat-form-field>
         <mat-form-field style="margin-right: 15px">
           <mat-label>Subject Short Name</mat-label>
-          <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.subjects[i].shortName">
+          <input type="text" matInput placeholder="Placeholder" [(ngModel)]="totalArray.subjects[i].shortName">
           <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
           <!-- <mat-hint>Hint</mat-hint> -->
         </mat-form-field>
         <mat-checkbox style="margin-right: 15px" [(ngModel)]="totalArray.subjects[i].moreThanOncePerDay">More than once per day?</mat-checkbox>
         <mat-checkbox style="margin-right: 15px" [(ngModel)]="totalArray.subjects[i].dayOff2TImesAWeek">Day off 2 times a wekk?</mat-checkbox>
-      <button style="margin-right: 15px" mat-icon-button color="primary" (click)="addButton('subjects',i)">
+      <button *ngIf="i == totalArray.subjects.length -1" style="margin-right: 15px" mat-icon-button color="primary" (click)="addButton('subjects',i)">
         <mat-icon>add</mat-icon>
       </button>
       <button style="margin-right: 15px" mat-icon-button color="primary" (click)="removeButton('subjects',i)">
@@ -129,29 +129,29 @@
             <section *ngFor="let room of totalArray.rooms; let i = index;">
                 <mat-form-field style="margin-right: 15px">
                     <mat-label>Room Name</mat-label>
-                    <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.rooms[i].name">
+                    <input type="text" matInput placeholder="Placeholder" [(ngModel)]="totalArray.rooms[i].name">
                     <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
                     <!-- <mat-hint>T</mat-hint> -->
                   </mat-form-field>
         <mat-form-field style="margin-right: 15px">
           <mat-label>Room Short Name</mat-label>
-          <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.rooms[i].shortName">
+          <input type="text" matInput placeholder="Placeholder" [(ngModel)]="totalArray.rooms[i].shortName">
           <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
           <!-- <mat-hint>Hint</mat-hint> -->
         </mat-form-field>
       <mat-form-field style="margin-right: 15px">
         <mat-label>Capacity</mat-label>
-        <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.rooms[i].capacity">
+        <input type="number" matInput placeholder="Placeholder" [(ngModel)]="totalArray.rooms[i].capacity">
         <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
         <!-- <mat-hint>Hint</mat-hint> -->
       </mat-form-field>
       <mat-form-field style="margin-right: 15px">
         <mat-label>Building</mat-label>
-        <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.rooms[i].building">
+        <input type="text" matInput placeholder="Placeholder" [(ngModel)]="totalArray.rooms[i].building">
         <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
         <!-- <mat-hint>Hint</mat-hint> -->
       </mat-form-field>
-      <button style="margin-right: 15px" mat-icon-button color="primary" (click)="addButton('rooms',i)">
+      <button  *ngIf="i == totalArray.rooms.length -1" style="margin-right: 15px" mat-icon-button color="primary" (click)="addButton('rooms',i)">
         <mat-icon>add</mat-icon>
       </button>
       <button style="margin-right: 15px" mat-icon-button color="primary" (click)="removeButton('rooms',i)">
@@ -175,31 +175,31 @@
             <section *ngFor="let teacher of totalArray.teachers; let i = index;">
                 <mat-form-field style="margin-right: 15px">
                     <mat-label>Teacher Name</mat-label>
-                    <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.teachers[i].name">
+                    <input type="text" matInput placeholder="Placeholder" [(ngModel)]="totalArray.teachers[i].name">
                     <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
                     <!-- <mat-hint>T</mat-hint> -->
                   </mat-form-field>
                   <mat-form-field style="margin-right: 15px">
                     <mat-label>Teacher Short Name</mat-label>
-                    <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.teachers[i].shortName">
+                    <input type="text" matInput placeholder="Placeholder" [(ngModel)]="totalArray.teachers[i].shortName">
                     <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
                     <!-- <mat-hint>T</mat-hint> -->
                   </mat-form-field>
                   <mat-form-field style="margin-right: 15px">
                     <mat-label>Max activities in a row</mat-label>
-                    <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.teachers[i].maxActivitiesInARow">
+                    <input type="number" matInput placeholder="Placeholder" [(ngModel)]="totalArray.teachers[i].maxActivitiesInARow">
                     <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
                     <!-- <mat-hint>T</mat-hint> -->
                   </mat-form-field>
                   <mat-form-field style="margin-right: 15px">
                     <mat-label>Max gaps per cycle</mat-label>
-                    <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.teachers[i].maxGapsPerCycle">
+                    <input type="number" matInput placeholder="Placeholder" [(ngModel)]="totalArray.teachers[i].maxGapsPerCycle">
                     <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
                     <!-- <mat-hint>T</mat-hint> -->
                   </mat-form-field>                  
                   <mat-form-field style="margin-right: 15px">
                     <mat-label>Max gaps once per day</mat-label>
-                    <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.teachers[i].maxGapsOncePerDay">
+                    <input type="number" matInput placeholder="Placeholder" [(ngModel)]="totalArray.teachers[i].maxGapsOncePerDay">
                     <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
                     <!-- <mat-hint>T</mat-hint> -->
                   </mat-form-field>
@@ -207,7 +207,7 @@
         <!-- <section style="margin-right: 15px">
           <mat-checkbox [(ngModel)]="totalArray.teachers[i].dayOff2TimesAWeek">Day off 2 times a week?</mat-checkbox>
         </section> -->
-      <button style="margin-right: 15px" mat-icon-button color="primary" (click)="addButton('teachers',i)">
+      <button  *ngIf="i == totalArray.teachers.length -1" style="margin-right: 15px" mat-icon-button color="primary" (click)="addButton('teachers',i)">
         <mat-icon>add</mat-icon>
       </button>
       <button style="margin-right: 15px" mat-icon-button color="primary" (click)="removeButton('teachers',i)">
@@ -231,25 +231,25 @@
               <section *ngFor="let teacher of totalArray.classes; let i = index;">
                   <mat-form-field style="margin-right: 15px">
                       <mat-label>Class Name</mat-label>
-                      <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.classes[i].name">
+                      <input type="text" matInput placeholder="Placeholder" [(ngModel)]="totalArray.classes[i].name">
                       <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
                       <!-- <mat-hint>T</mat-hint> -->
                     </mat-form-field>
                     <mat-form-field style="margin-right: 15px">
                       <mat-label>Class Short Name</mat-label>
-                      <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.classes[i].shortName">
+                      <input type="text" matInput placeholder="Placeholder" [(ngModel)]="totalArray.classes[i].shortName">
                       <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
                       <!-- <mat-hint>T</mat-hint> -->
                     </mat-form-field>
                     <mat-form-field style="margin-right: 15px">
                         <mat-label>Max allowed difference</mat-label>
-                        <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.classes[i].maxAllowedDifference">
+                        <input type="number" matInput placeholder="Placeholder" [(ngModel)]="totalArray.classes[i].maxAllowedDifference">
                         <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
                         <!-- <mat-hint>T</mat-hint> -->
                       </mat-form-field>
                     <mat-checkbox style="margin-right: 15px" [(ngModel)]="totalArray.classes[i].startOn1stPeriod">Start on 1st Period?</mat-checkbox>
                     <mat-checkbox style="margin-right: 15px" [(ngModel)]="totalArray.classes[i].noGapsAllowed">No period gaps?</mat-checkbox>
-        <button style="margin-right: 15px" mat-icon-button color="primary" (click)="addButton('classes',i)">
+        <button *ngIf="i == totalArray.classes.length -1" style="margin-right: 15px" mat-icon-button color="primary" (click)="addButton('classes',i)">
           <mat-icon>add</mat-icon>
         </button>
         <button style="margin-right: 15px" mat-icon-button color="primary" (click)="removeButton('classes',i)">
@@ -309,7 +309,7 @@
         </mat-form-field>
         <mat-form-field style="margin-right: 15px">
           <mat-label>Activities per cycle</mat-label>
-          <input matInput placeholder="Activities per cycle" [(ngModel)]="totalArray.activities[i].activitiesPerCyle">
+          <input type="number" matInput placeholder="Activities per cycle" [(ngModel)]="totalArray.activities[i].activitiesPerCyle">
           <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
           <!-- <mat-hint>T</mat-hint> -->
         </mat-form-field>
@@ -343,7 +343,7 @@
           <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
           <!-- <mat-hint>T</mat-hint> -->
         </mat-form-field>
-        <button style="margin-right: 15px" mat-icon-button color="primary" (click)="addButton('activities',i)">
+        <button *ngIf="i == totalArray.activities.length -1" style="margin-right: 15px" mat-icon-button color="primary" (click)="addButton('activities',i)">
           <mat-icon>add</mat-icon>
         </button>
         <button style="margin-right: 15px" mat-icon-button color="primary" (click)="removeButton('activities',i)">
