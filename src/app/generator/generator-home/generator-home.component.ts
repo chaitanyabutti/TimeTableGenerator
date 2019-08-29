@@ -15,19 +15,15 @@ export class GeneratorHomeComponent implements OnInit {
 
   constructor(public dialog: MatDialog,
               private db: AngularFirestore) {
-                console.log("We're printing firebase objects");
                 this.configurationTemplates = db.collection('configurationtemplates').valueChanges().subscribe(val => {
-                  console.log(val);
                 });
                 // console.log(this.configurationTemplates);
   }
 
   ngOnInit() {
-    console.log('We\'re in GeneratorHome component');
   }
 
   openConfigGenerator() {
-    console.log('We\'re in config Generator method');
 
     const dialogRef = this.dialog.open(ConfigGeneratorComponent, {
       width: '80%',
@@ -35,7 +31,6 @@ export class GeneratorHomeComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
       // this.animal = result;
     });
   }

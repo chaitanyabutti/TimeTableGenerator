@@ -1,7 +1,9 @@
-import { ConfigurationTemplate, Subjects, Periods, Classes, Rooms, Activities, Days, Teachers } from './configuration.model';
+// import { ConfigurationTemplate, Subjects, Periods, Classes, Rooms, Activities, Days, Teachers } from './configuration.model';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Subjects, ConfigurationTemplate, Days, Classes, Periods, Rooms, Activities, Teachers } from './configuration.model';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 
 @Component({
@@ -16,25 +18,16 @@ export class ConfigGeneratorComponent implements OnInit {
   thirdFormGroup: FormGroup;
   fourthFormGroup: FormGroup;
   fifthFormGroup: FormGroup;
-  totalArray: any = [];
-  // tslint:disable-next-line: max-line-length
-  // totalArray: ConfigurationTemplate = new ConfigurationTemplate('', {name: '', shortName: ''}, {name: '', shortName: '', startTime: new Time(), endTime: ''}, {name: '', shortName: '', code: ''}, {name: '', shortName: '', capacity: '', building: ''}, {name: '', shortName: '','','',''}, {name: '', shortName: '','','',''}, {name: '', shortName: '','','','',''});
+  totalArray = new ConfigurationTemplate();
+  subjectsThing = new Subjects();
   constructor(
     public dialogRef: MatDialogRef<ConfigGeneratorComponent>,
     private _formBuilder: FormBuilder,
-    // private subjects: Subjects,
-    // private rooms: Rooms,
-    // private activities: Activities,
-    // private classes: Classes,
-    // private periods: Periods,
-    // private days: Days,
-    // private teachers: Teachers,
-    // private configurationTemplate: ConfigurationTemplate,
+    private db: AngularFirestore,
     @Inject(MAT_DIALOG_DATA) public data: any) {
     }
   ngOnInit() {
     this.intializeData();
-    console.log("We're in the dialog component");
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required]
     });
@@ -54,47 +47,41 @@ export class ConfigGeneratorComponent implements OnInit {
 
   intializeData() {
     // this.totalArray = this.configurationTemplate;
-    // this.totalArray.subjects = [];
-    // this.totalArray.classes = [];
-    // this.totalArray.teachers = [];
-    // this.totalArray.students = [];
-    // this.totalArray.periods = [];
-    // this.totalArray.days = [];
-    // this.totalArray.rooms = [];
-    // this.totalArray.activities = [];
-    // this.totalArray.subjects[0] = ;
-    // this.totalArray.classes[0] = [];
-    // this.totalArray.teachers[0] = [];
-    // this.totalArray.students[0] = [];
-    // this.totalArray.periods[0] = [];
-    // this.totalArray.rooms[0] = [];
-    // this.totalArray.activities[0] = [];
+    this.totalArray.Subjects = [];
+    this.totalArray.Classes = [];
+    this.totalArray.Activities = [];
+    this.totalArray.Periods = [];
+    this.totalArray.Rooms = [];
+    this.totalArray.Days = [];
+    this.totalArray.Teachers = [];
+    this.totalArray.Subjects[0] = new Subjects();
+    this.totalArray.Classes[0] = new Classes();
+    this.totalArray.Activities[0] = new Activities();
+    this.totalArray.Periods[0] = new Periods();
+    this.totalArray.Rooms[0] = new Rooms();
+    this.totalArray.Teachers[0] = new Teachers();
+    this.totalArray.Days[0] = new Days();
+    this.totalArray.Days[0].name = 'Monday';
+    this.totalArray.Days[0].shortName = 'Mon';
+    this.totalArray.Days[1] = new Days();
+    this.totalArray.Days[1].name = 'Tuesday';
+    this.totalArray.Days[1].shortName = 'Tue';
+    this.totalArray.Days[2] = new Days();
+    this.totalArray.Days[2].name = 'Wednesday';
+    this.totalArray.Days[2].shortName = 'Wed';
+    this.totalArray.Days[3] = new Days();
+    this.totalArray.Days[3].name = 'Thursday';
+    this.totalArray.Days[3].shortName = 'Thu';
+    this.totalArray.Days[4] = new Days();
+    this.totalArray.Days[4].name = 'Friday';
+    this.totalArray.Days[4].shortName = 'Fri';
+    console.log("totalarray is coming in intialization");
+    console.log(this.totalArray);
     // this.totalArray.days[0] = {name: 'Monday', shortName: 'Mon'};
-    // this.totalArray.days[1] = this.days;
     // this.totalArray.days[1] = {name: 'Tuesday', shortName: 'Tue'};
     // this.totalArray.days[2] = {name: 'Wednesday', shortName: 'Wed'};
     // this.totalArray.days[3] = {name: 'Thursday', shortName: 'Thu'};
     // this.totalArray.days[4] = {name: 'Friday', shortName: 'Fri'};
-    this.totalArray.subjects = [];
-    this.totalArray.classes = [];
-    this.totalArray.teachers = [];
-    this.totalArray.students = [];
-    this.totalArray.periods = [];
-    this.totalArray.days = [];
-    this.totalArray.rooms = [];
-    this.totalArray.activities = [];
-    this.totalArray.subjects[0] = [];
-    this.totalArray.classes[0] = [];
-    this.totalArray.teachers[0] = [];
-    this.totalArray.students[0] = [];
-    this.totalArray.periods[0] = [];
-    this.totalArray.rooms[0] = [];
-    this.totalArray.activities[0] = [];
-    this.totalArray.days[0] = {name: 'Monday', shortName: 'Mon'};
-    this.totalArray.days[1] = {name: 'Tuesday', shortName: 'Tue'};
-    this.totalArray.days[2] = {name: 'Wednesday', shortName: 'Wed'};
-    this.totalArray.days[3] = {name: 'Thursday', shortName: 'Thu'};
-    this.totalArray.days[4] = {name: 'Friday', shortName: 'Fri'};
   }
 
   onNoClick(): void {
@@ -120,42 +107,64 @@ export class ConfigGeneratorComponent implements OnInit {
   // }
 
   addButton(type, index) {
-    if (type === 'subjects') {
-      this.totalArray.subjects[index + 1] = [];
-    } else if (type === 'teachers') {
-      this.totalArray.teachers[index + 1] = [];
-    } else if ( type === 'classes') {
-      this.totalArray.classes[index + 1] = [];
-    } else if (type === 'days') {
-      this.totalArray.days[index + 1] = [];
-    } else if (type === 'periods') {
-      this.totalArray.periods[index + 1] = [];
-    } else if (type === 'rooms') {
-      this.totalArray.rooms[index + 1] = [];
-    } else if (type === 'activities') {
-      this.totalArray.activities[index + 1] = [];
+    if (type === 'Subjects') {
+      this.totalArray.Subjects[index + 1] = new Subjects();
+    } else if (type === 'Teachers') {
+      this.totalArray.Subjects[index + 1] = new Subjects();
+      // this.totalArray.teachers[index + 1] = [];
+    } else if ( type === 'Classes') {
+      this.totalArray.Classes[index + 1] = new Classes();
+      // this.totalArray.classes[index + 1] = [];
+    } else if (type === 'Days') {
+      this.totalArray.Days[index + 1] = new Days();
+      // this.totalArray.days[index + 1] = [];
+    } else if (type === 'Periods') {
+      this.totalArray.Periods[index + 1] = new Periods();
+      // this.totalArray.periods[index + 1] = [];
+    } else if (type === 'Rooms') {
+      this.totalArray.Rooms[index + 1] = new Rooms();
+      // this.totalArray.rooms[index + 1] = [];
+    } else if (type === 'Activities') {
+      this.totalArray.Activities[index + 1] = new Activities();
+      // this.totalArray.activities[index + 1] = [];
     }
   }
 
   removeButton(type, index) {
-    if (type === 'subjects') {
+    if (type === 'Subjects') {
       // this.totalArray.subjects[index] = undefined;
-      this.totalArray.subjects.splice(index, 1);
-    } else if (type === 'teachers') {
+      this.totalArray.Subjects.splice(index, 1);
+      // this.totalArray.subjects.splice(index, 1);
+    } else if (type === 'Teachers') {
       // this.totalArray.teachers[index] = undefined;
-      this.totalArray.teachers.splice(index, 1);
-    } else if ( type === 'classes') {
+      this.totalArray.Teachers.splice(index, 1);
+      // this.totalArray.teachers.splice(index, 1);
+    } else if ( type === 'Classes') {
       // this.totalArray.classes[index] = undefined;
-      this.totalArray.classes.splice(index, 1);
-    } else if (type === 'days') {
+      // this.totalArray.classes.splice(index, 1);
+      this.totalArray.Classes.splice(index, 1);
+    } else if (type === 'Days') {
       // this.totalArray.days[index] = undefined;
-      this.totalArray.days.splice(index, 1);
-    } else if (type === 'periods') {
-      this.totalArray.periods.splice(index, 1);
-    } else if (type === 'rooms') {
-      this.totalArray.rooms.splice(index, 1);
-    } else if (type === 'activities') {
-      this.totalArray.activities.splice(index, 1);
+      // this.totalArray.days.splice(index, 1);
+      this.totalArray.Days.splice(index, 1);
+    } else if (type === 'Periods') {
+      // this.totalArray.periods.splice(index, 1);
+      this.totalArray.Periods.splice(index, 1);
+    } else if (type === 'Rooms') {
+      // this.totalArray.rooms.splice(index, 1);
+      this.totalArray.Rooms.splice(index, 1);
+    } else if (type === 'Activities') {
+      // this.totalArray.activities.splice(index, 1);
+      this.totalArray.Activities.splice(index, 1);
     }
+  }
+
+  saveData() {
+    console.log("Save data is invoked");
+    console.log(this.totalArray);
+    this.db.firestore.collection('configurations').add(this.totalArray).then(data => {
+      console.log("We have fired the call");
+      console.log(data);
+    });
   }
 }
