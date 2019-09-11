@@ -162,7 +162,24 @@ export class ConfigGeneratorComponent implements OnInit {
   saveData() {
     console.log("Save data is invoked");
     console.log(this.totalArray);
-    this.db.firestore.collection('configurations').add(this.totalArray).then(data => {
+    let e;
+    // Object.assign(e, this.totalArray);
+    // console.log(e);
+    // let jsonArray = [];
+    // this.totalArray.Activities.forEach((activity, index) => {
+    //   if (activity.teacher !== null || undefined) {
+          
+    //   }
+    // });
+    const testJSON = {
+      name: 'chaitanya',
+      thing: 'something'
+    };
+    let testJSON2 = JSON.stringify(this.totalArray);
+    let testJSON3 = JSON.parse(testJSON2);
+    console.log("testJSON3");
+    console.log(testJSON3);
+    this.db.firestore.collection('configurations').add(testJSON3).then(data => {
       console.log("We have fired the call");
       console.log(data);
     });
