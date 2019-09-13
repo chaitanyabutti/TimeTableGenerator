@@ -55,6 +55,8 @@ export class Activities {
 }
 
 export class ConfigurationTemplate {
+    name: string;
+    timestamp: number;
     Days: Days[];
     Periods: Periods[];
     Subjects: Subjects[];

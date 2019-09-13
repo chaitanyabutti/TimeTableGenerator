@@ -175,6 +175,7 @@ export class ConfigGeneratorComponent implements OnInit {
       name: 'chaitanya',
       thing: 'something'
     };
+    this.totalArray.timestamp = Date.now();
     let testJSON2 = JSON.stringify(this.totalArray);
     let testJSON3 = JSON.parse(testJSON2);
     console.log("testJSON3");

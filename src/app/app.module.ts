@@ -15,6 +15,11 @@ import { environment } from 'src/environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { LoginComponent } from './login/login.component';
 import {AngularFireAuthModule} from '@angular/fire/auth';
+import { FixedComponent } from './fixed/fixed.component';
+import { HeaderComponent } from './fixed/header/header.component';
+import { MainComponent } from './main/main.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 
 
@@ -26,7 +31,10 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
     AppComponent,
     HomeComponent,
     ConfigGeneratorComponent,
-    LoginComponent
+    LoginComponent,
+    FixedComponent,
+    HeaderComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +46,8 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    FlexLayoutModule
   ],
   entryComponents: [
     ConfigGeneratorComponent

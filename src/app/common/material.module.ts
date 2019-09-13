@@ -42,6 +42,7 @@ import { ClassesdialogComponent } from './config-generator/classesdialog/classes
 import { MapperdialogComponent } from './config-generator/mapperdialog/mapperdialog.component';
 import { PeriodsdialogComponent } from './config-generator/periodsdialog/periodsdialog.component';
 import { DaysdialogComponent } from './config-generator/daysdialog/daysdialog.component';
+import { ConfigHomeComponent } from './config-home/config-home.component';
 
 @NgModule({
   imports: [
@@ -113,7 +114,7 @@ import { DaysdialogComponent } from './config-generator/daysdialog/daysdialog.co
     MatTooltipModule,
     MatBadgeModule
   ],
-  declarations: [TeachersdialogComponent, RoomsdialogComponent, SubjectsdialogComponent, ClassesdialogComponent, MapperdialogComponent, PeriodsdialogComponent, DaysdialogComponent]
+  declarations: [TeachersdialogComponent, RoomsdialogComponent, SubjectsdialogComponent, ClassesdialogComponent, MapperdialogComponent, PeriodsdialogComponent, DaysdialogComponent, ConfigHomeComponent]
 })
 export class MaterialModule {
 

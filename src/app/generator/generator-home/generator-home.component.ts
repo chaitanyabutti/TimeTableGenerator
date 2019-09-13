@@ -15,24 +15,24 @@ export class GeneratorHomeComponent implements OnInit {
 
   constructor(public dialog: MatDialog,
               private db: AngularFirestore) {
-                this.configurationTemplates = db.collection('configurationtemplates').valueChanges().subscribe(val => {
-                });
+                // this.configurationTemplates = db.collection('configurationtemplates').valueChanges().subscribe(val => {
+                // });
                 // console.log(this.configurationTemplates);
   }
 
   ngOnInit() {
   }
 
-  openConfigGenerator() {
+  // openConfigGenerator() {
 
-    const dialogRef = this.dialog.open(ConfigGeneratorComponent, {
-      width: '80%',
-      data: {}
-    });
+  //   const dialogRef = this.dialog.open(ConfigGeneratorComponent, {
+  //     width: '80%',
+  //     data: {}
+  //   });
 
-    dialogRef.afterClosed().subscribe(result => {
-      // this.animal = result;
-    });
-  }
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     // this.animal = result;
+  //   });
+  // }
 
 }
