@@ -1,11 +1,36 @@
-<button mat-raised-button color="primary" (click)="openConfigGenerator()">Open Dialog</button>
-<!-- <p>We're in the generator home component</p> -->
-<mat-card>
-    <mat-grid-list [cols]="noOfCols" rowHeight="2:1">
-        <mat-grid-tile style="background-color: green">1</mat-grid-tile>
-        <mat-grid-tile style="background-color: red">2</mat-grid-tile>
-        <mat-grid-tile style="background-color: blue">3</mat-grid-tile>
-        <mat-grid-tile style="background-color: violet">4</mat-grid-tile>
-        <mat-grid-tile style="background-color: black">5</mat-grid-tile>
+<!-- <div fxFlex fxLayout="row">
+    <div fxLayout="column"> -->
+    <mat-card>
+        <mat-form-field>
+            <mat-label>Select a configuration</mat-label>
+            <mat-select [(value)]="selectedConfiguration">
+              <mat-option *ngFor="let configTemplate of configurationTemplates" [value]=configTemplate.id>
+                  {{configTemplate.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>      
+    </mat-card>
+  <!-- </div> -->
+  <div class="table">
+      <div class="row">
+        <div style="background: purple" class="cell">Cell 1</div>
+        <div style="background: red" class="cell">Cell 2</div>
+        <div style="background: green" class="cell rowspan2">Cell 3</div>
+      </div>
+      <div class="row">
+        <div class="cell colspan2">Cell 4</div>
+      </div>
+    </div>
+
+<!-- <div fxLayout="row" fxLayoutAlign="center center">
+    <div style="background-color: green">One</div>
+    <div style="background-color: yellow">Two</div>
+    <div style="background-color: purple">Three</div>
+    <div style="background-color: red">Four</div>
+</div> -->
+<!-- </div> -->
+<!-- <mat-card>
+    <mat-grid-list [cols]="noOfCols" [rowHeight]="rowHeight">
+      <mat-grid-tile style="background: lightblue" *ngFor="let grid of ' '.repeat(noOfCols*noOfRows).split(''), let i = index"></mat-grid-tile>
       </mat-grid-list>
-</mat-card>
+</mat-card> -->

@@ -2,7 +2,7 @@
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
   </mat-form-field>
 <div class="fab" matTooltip="Add new configuration">
-    <button mat-fab color="primary" (click)="addNewConfig()">
+    <button mat-fab color="primary" (click)="addNewConfig('addNew')">
             <mat-icon>add_item</mat-icon>
     </button>
 </div>
@@ -35,8 +35,8 @@
           <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
                 <td mat-cell *matCellDef="let row">
-                    <button color="primary" mat-icon-button (click)="addNewConfig()"><mat-icon>edit</mat-icon></button>
-                    <button color="primary" mat-icon-button (click)="addNewConfig()"><mat-icon>delete</mat-icon></button>
+                    <button color="primary" mat-icon-button (click)="editConfig(row)"><mat-icon>edit</mat-icon></button>
+                    <button color="primary" mat-icon-button (click)="deleteConfig(row)"><mat-icon>delete</mat-icon></button>
                     </td>
               </ng-container>
   

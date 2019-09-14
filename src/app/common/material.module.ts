@@ -35,13 +35,6 @@ import {
   MatTooltipModule,
   MatBadgeModule,
 } from '@angular/material';
-import { TeachersdialogComponent } from './config-generator/teachersdialog/teachersdialog.component';
-import { RoomsdialogComponent } from './config-generator/roomsdialog/roomsdialog.component';
-import { SubjectsdialogComponent } from './config-generator/subjectsdialog/subjectsdialog.component';
-import { ClassesdialogComponent } from './config-generator/classesdialog/classesdialog.component';
-import { MapperdialogComponent } from './config-generator/mapperdialog/mapperdialog.component';
-import { PeriodsdialogComponent } from './config-generator/periodsdialog/periodsdialog.component';
-import { DaysdialogComponent } from './config-generator/daysdialog/daysdialog.component';
 import { ConfigHomeComponent } from './config-home/config-home.component';
 
 @NgModule({
@@ -114,7 +107,7 @@ import { ConfigHomeComponent } from './config-home/config-home.component';
     MatTooltipModule,
     MatBadgeModule
   ],
-  declarations: [TeachersdialogComponent, RoomsdialogComponent, SubjectsdialogComponent, ClassesdialogComponent, MapperdialogComponent, PeriodsdialogComponent, DaysdialogComponent, ConfigHomeComponent]
+  declarations: [ConfigHomeComponent]
 })
 export class MaterialModule {
 

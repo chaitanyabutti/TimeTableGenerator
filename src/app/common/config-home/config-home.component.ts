@@ -61,13 +61,30 @@ export class ConfigHomeComponent implements OnInit {
     }
   }
 
-  addNewConfig() {
+  addNewConfig(type) {
     const dialogRef = this.dialog.open(ConfigGeneratorComponent, {
       width: '80%',
-      data: {}
+      data: {dialogAction: type}
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log("dialog Closed")
+      console.log("dialog Closed");
+    });
+  }
+
+  editConfig(row) {
+    const dialogRef = this.dialog.open(ConfigGeneratorComponent, {
+      width: '80%',
+      data: {dialogAction: 'edit', id: row.id, data: row}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log("dialog Closed");
+    });
+  }
+
+  deleteConfig(row) {
+    const docRef = this.db.firestore.collection('configurations').doc(row.id);
+    docRef.delete().then(data => {
+      console.log("Record deleted successfully");
     });
   }
 

@@ -1,3 +1,4 @@
+import { DataService } from 'src/app/services/data.service';
 import { ConfigGeneratorComponent } from './common/config-generator/config-generator.component';
 import { MaterialModule } from './common/material.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,7 +20,6 @@ import { FixedComponent } from './fixed/fixed.component';
 import { HeaderComponent } from './fixed/header/header.component';
 import { MainComponent } from './main/main.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
 
 
 
@@ -52,7 +52,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
   entryComponents: [
     ConfigGeneratorComponent
   ],
-  providers: [],
+  providers: [
+    DataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

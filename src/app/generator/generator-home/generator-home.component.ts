@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfigGeneratorComponent } from '../../common/config-generator/config-generator.component';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-generator-home',
@@ -10,8 +10,11 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class GeneratorHomeComponent implements OnInit {
 
-  noOfCols = 5;
+  noOfCols;
+  noOfRows;
+  rowHeight;
   configurationTemplates;
+  selectedConfiguration;
 
   constructor(public dialog: MatDialog,
               private db: AngularFirestore) {
@@ -21,18 +24,25 @@ export class GeneratorHomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.noOfCols = 5;
+    this.noOfRows = 4;
+    this.rowHeight = this.noOfCols + ':' + this.noOfRows;
+    this.intiliazeGridStructure();
   }
 
-  // openConfigGenerator() {
+  intiliazeGridStructure() {
+    this.db.collection('configurations').snapshotChanges().subscribe(snaps => {
+      this.configurationTemplates = snaps.map(snaps => {
+        return {
+          id: snaps.payload.doc.id,
+          ...snaps.payload.doc.data()
+        };
+      });
+    });
+  }
 
-  //   const dialogRef = this.dialog.open(ConfigGeneratorComponent, {
-  //     width: '80%',
-  //     data: {}
-  //   });
+  scheduleTimeTable(data) {
 
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     // this.animal = result;
-  //   });
-  // }
+  }
 
 }

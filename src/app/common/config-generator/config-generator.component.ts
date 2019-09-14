@@ -13,36 +13,48 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class ConfigGeneratorComponent implements OnInit {
   isLinear = false;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
-  thirdFormGroup: FormGroup;
-  fourthFormGroup: FormGroup;
-  fifthFormGroup: FormGroup;
+  // firstFormGroup: FormGroup;
+  // secondFormGroup: FormGroup;
+  // thirdFormGroup: FormGroup;
+  // fourthFormGroup: FormGroup;
+  // fifthFormGroup: FormGroup;
   totalArray = new ConfigurationTemplate();
   subjectsThing = new Subjects();
+  dialogAction;
+  dialogId;
   constructor(
     public dialogRef: MatDialogRef<ConfigGeneratorComponent>,
     private _formBuilder: FormBuilder,
     private db: AngularFirestore,
     @Inject(MAT_DIALOG_DATA) public data: any) {
+      this.dialogAction = data.dialogAction;
+      if (this.dialogAction !== 'addNew' && this.dialogAction !== undefined) {
+        this.dialogId = data.id;
+        this.totalArray = data.data;
+      }
+      // if (data.id !== undefined) {
+      //   this.dialogId = data.id;
+      // }
     }
   ngOnInit() {
-    this.intializeData();
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    });
-    this.thirdFormGroup = this._formBuilder.group({
-      thirdCtrl: ['', Validators.required]
-    });
-    this.fourthFormGroup = this._formBuilder.group({
-      fourthCtrl: ['', Validators.required]
-    });
-    this.fifthFormGroup = this._formBuilder.group({
-      fifthCtrl: ['', Validators.required]
-    });
+    if (this.dialogAction === 'addNew') {
+      this.intializeData();
+    }
+    // this.firstFormGroup = this._formBuilder.group({
+    //   firstCtrl: ['', Validators.required]
+    // });
+    // this.secondFormGroup = this._formBuilder.group({
+    //   secondCtrl: ['', Validators.required]
+    // });
+    // this.thirdFormGroup = this._formBuilder.group({
+    //   thirdCtrl: ['', Validators.required]
+    // });
+    // this.fourthFormGroup = this._formBuilder.group({
+    //   fourthCtrl: ['', Validators.required]
+    // });
+    // this.fifthFormGroup = this._formBuilder.group({
+    //   fifthCtrl: ['', Validators.required]
+    // });
   }
 
   intializeData() {
@@ -75,7 +87,7 @@ export class ConfigGeneratorComponent implements OnInit {
     this.totalArray.Days[4] = new Days();
     this.totalArray.Days[4].name = 'Friday';
     this.totalArray.Days[4].shortName = 'Fri';
-    console.log("totalarray is coming in intialization");
+    console.log('totalarray is coming in intialization');
     console.log(this.totalArray);
     // this.totalArray.days[0] = {name: 'Monday', shortName: 'Mon'};
     // this.totalArray.days[1] = {name: 'Tuesday', shortName: 'Tue'};
@@ -160,29 +172,24 @@ export class ConfigGeneratorComponent implements OnInit {
   }
 
   saveData() {
-    console.log("Save data is invoked");
+    console.log('Save data is invoked');
     console.log(this.totalArray);
-    let e;
-    // Object.assign(e, this.totalArray);
-    // console.log(e);
-    // let jsonArray = [];
-    // this.totalArray.Activities.forEach((activity, index) => {
-    //   if (activity.teacher !== null || undefined) {
-          
-    //   }
-    // });
-    const testJSON = {
-      name: 'chaitanya',
-      thing: 'something'
-    };
     this.totalArray.timestamp = Date.now();
-    let testJSON2 = JSON.stringify(this.totalArray);
-    let testJSON3 = JSON.parse(testJSON2);
-    console.log("testJSON3");
-    console.log(testJSON3);
-    this.db.firestore.collection('configurations').add(testJSON3).then(data => {
-      console.log("We have fired the call");
-      console.log(data);
-    });
+    switch (this.dialogAction) {
+      case 'addNew': {
+        const convertedJSON = JSON.parse(JSON.stringify(this.totalArray));
+        this.db.firestore.collection('configurations').add(convertedJSON).then(data => {
+          console.log("Record added successfully");
+        });
+      }              break;
+      case 'edit': {
+        const convertedJSON = JSON.parse(JSON.stringify(this.totalArray));
+        const docRef = this.db.firestore.collection('configurations').doc(this.dialogId);
+        docRef.update(convertedJSON).then(data => {
+          console.log('Record updated successfully.');
+        });
+      }            break;
+    }
+    this.dialogRef.close();
   }
 }
