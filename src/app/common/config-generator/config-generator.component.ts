@@ -122,7 +122,7 @@ export class ConfigGeneratorComponent implements OnInit {
     if (type === 'Subjects') {
       this.totalArray.Subjects[index + 1] = new Subjects();
     } else if (type === 'Teachers') {
-      this.totalArray.Subjects[index + 1] = new Subjects();
+      this.totalArray.Teachers[index + 1] = new Teachers();
       // this.totalArray.teachers[index + 1] = [];
     } else if ( type === 'Classes') {
       this.totalArray.Classes[index + 1] = new Classes();

@@ -21,6 +21,37 @@
     padding: 1em;
     flex: 1;
   }
+
+  .box {
+		background-color: #444;
+		color: #fff;
+		border-radius: 5px;
+		padding: 20px;
+		font-size: 150%;
+  }
+
+  .containerX {
+    width: 490px;
+    height: 210px;
+    padding: 5px;
+    border: solid 1px #b6b6b6;
+    box-sizing: content-box !important;
+  }
+
+  .colorNested, .containerX {
+    min-height: 384px;
+    background: #999999;
+  }
+
+  .card-demo mat-card,
+.card-demo mat-card-content {
+  margin-bottom: 24px;
+}
+
+.card-demo mat-card-footer {
+  left: 24px;
+  margin-bottom: 24px;
+}
   
   /* ============================================================== */
   /* if display grid and contents is supported then you may use it  */
@@ -56,3 +87,42 @@
     }
   }
   */
+
+  body {
+    margin: 40px;
+  }
+  .wrapper {
+      // align-content: center;
+      display: grid;
+      grid-gap: 10px;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr) ) ;
+      background-color: #fff;
+      color: #444;
+      position: relative;
+      // left: 50%;
+      // top: 50%;
+      // transform: translate(-50%, -50%);
+    }
+  
+    .box {
+      background-color: #444;
+      color: #fff;
+      border-radius: 5px;
+      padding: 20px;
+      font-size: 150%;
+  
+    }
+  
+  .a {
+    grid-column: auto / span 2;
+  }
+  
+  .k {
+    grid-column: auto / span 3;
+  }
+  
+  .g {
+    grid-column: auto / span 2;
+    grid-row: auto / span 2;
+  }
+  

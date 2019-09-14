@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { GeneratorRoutingModule } from './generator-routing.module';
 import { GeneratorHomeComponent } from './generator-home/generator-home.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { GeneratorHomeComponent } from './generator-home/generator-home.componen
     CommonModule,
     GeneratorRoutingModule,
     MaterialModule,
+    FlexLayoutModule
   ],
   // exports: [
   //   ConfigGeneratorComponent

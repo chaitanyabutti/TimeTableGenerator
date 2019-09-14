@@ -1,6 +1,8 @@
-<button color="primary" mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+<!-- <button color="primary" mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
     {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
-  </button>
+  </button> -->
+  <h1 mat-dialog-title>Hi People</h1>
+  <div mat-dialog-content>
   <mat-horizontal-stepper [linear]="isLinear" #stepper>
     <mat-step>
       <!-- <form [formGroup]="firstFormGroup"> -->
@@ -276,7 +278,7 @@
           <!-- <input matInput placeholder="Placeholder" [(ngModel)]="totalArray.teachers[i].maxGapsOncePerDay"> -->
           <mat-select [(ngModel)]="totalArray.Activities[i].teacher" required>
             <mat-option>--</mat-option>
-            <mat-option *ngFor="let teacher of totalArray.teachers; let i = index;" [value]="teacher">
+            <mat-option *ngFor="let teacher of totalArray.Teachers; let i = index;" [value]="teacher">
               {{teacher.name}}
             </mat-option>
           </mat-select>
@@ -367,3 +369,4 @@
       </div>
     </mat-step>
   </mat-horizontal-stepper>
+  </div>
