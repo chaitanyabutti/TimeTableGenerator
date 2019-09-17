@@ -46,8 +46,31 @@
             </div>
           </mat-card-content>
         </mat-card> -->
+        <!-- <mat-card class='wrapper' style="width: 100%">
+          <div *ngFor="let grid of ' '.repeat(noOfRows +1).split(''), let rowIndex = index">
+              <div *ngFor="let grid of ' '.repeat(noOfDays +1).split(''), let dayIndex = index">
+                <div style="margin-top: 10px" *ngFor="let grid of ' '.repeat(noOfCols +1).split(''), let colIndex = index">
+                  <div class="box e">
+                  {{dayIndex}},{{rowIndex}},{{colIndex}}
+                  </div>
+                </div>
+              </div>
+          </div>
+      </mat-card> -->
 
-        <mat-card class='wrapper' style="width: 100%">
+      <mat-card class='grid'>
+          <div *ngFor="let grid of ' '.repeat(noOfRows +1).split(''), let rowIndex = index">
+              <div *ngFor="let grid of ' '.repeat(noOfDays +1).split(''), let dayIndex = index">
+                <div style="margin-top: 10px" *ngFor="let grid of ' '.repeat(noOfCols +1).split(''), let colIndex = index">
+                  <div class="box e">
+                  {{dayIndex}},{{rowIndex}},{{colIndex}}
+                  </div>
+                </div>
+              </div>
+          </div>
+      </mat-card>
+
+        <!-- <mat-card class='wrapper' style="width: 100%">
             <div *ngFor="let grid of ' '.repeat(noOfRows).split(''), let i = index">
                 <div style="margin-top: 10px" *ngFor="let grid of ' '.repeat(noOfCols).split(''), let j = index">
                   <div class="box e">
@@ -55,7 +78,7 @@
                   </div>
                 </div>
             </div>
-        </mat-card>
+        </mat-card> -->
         <!-- <div class="wrapper">
 
           </div> -->

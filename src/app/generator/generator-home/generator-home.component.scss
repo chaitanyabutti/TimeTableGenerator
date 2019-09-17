@@ -22,13 +22,13 @@
     flex: 1;
   }
 
-  .box {
-		background-color: #444;
-		color: #fff;
-		border-radius: 5px;
-		padding: 20px;
-		font-size: 150%;
-  }
+  // .box {
+	// 	background-color: #444;
+	// 	color: #fff;
+	// 	border-radius: 5px;
+	// 	padding: 20px;
+	// 	font-size: 150%;
+  // }
 
   .containerX {
     width: 490px;
@@ -93,9 +93,10 @@
   }
   .wrapper {
       // align-content: center;
+      width: 100%;
       display: grid;
       grid-gap: 10px;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr) ) ;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr) ) ;
       background-color: #fff;
       color: #444;
       position: relative;
@@ -126,3 +127,27 @@
     grid-row: auto / span 2;
   }
   
+  .grid {
+      /**
+   * Two columns:
+   *  1. the first sized to content,
+   *  2. the second receives the remaining space
+   *     (but is never smaller than the minimum size of the board
+   *     or the game controls, which occupy this column [Figure 4])
+   *
+   * Three rows:
+   *  3. the first sized to content,
+   *  4. the middle row receives the remaining space
+   *     (but is never smaller than the minimum height
+   *      of the board or stats areas)
+   *  5. the last sized to content.
+   */
+  display: grid;
+  grid-template-columns:
+    /* 1 */ auto
+    /* 2 */ 1fr;
+  grid-template-rows:
+    /* 3 */ auto
+    /* 4 */ 1fr
+    /* 5 */ auto;
+  }

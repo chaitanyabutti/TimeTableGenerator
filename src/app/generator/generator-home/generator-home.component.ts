@@ -33,10 +33,10 @@ export class GeneratorHomeComponent implements OnInit {
     this.noOfRows = 1;
     this.noOfCols = 2;
     // this.rowHeight = this.noOfCols + ':' + this.noOfRows;
-    // this.intiliazeGridStructure();
+    this.getConfigData();
   }
 
-  intiliazeGridStructure() {
+  getConfigData() {
     this.db.collection('configurations').snapshotChanges().subscribe(snaps => {
       this.configurationTemplates = snaps.map(snaps => {
         return {
@@ -59,10 +59,22 @@ export class GeneratorHomeComponent implements OnInit {
     this.noOfDays.forEach((day, dayIndex) => {
       this.noOfRows.forEach((row, rowIndex) => {
         this.noOfCols.forEach((column, columnIndex) => {
+          // if (dayIndex === 0 && rowIndex === 0 && columnIndex === 0) {
+            this.gridStrctures[dayIndex][rowIndex][columnIndex] = new Grid();
+            this.gridStrctures[dayIndex][rowIndex][columnIndex].metaData = false;
+            this.gridStrctures[dayIndex][rowIndex][columnIndex].textContent = dayIndex + ',' + rowIndex + ',' + columnIndex;
+            this.gridStrctures[dayIndex][rowIndex][columnIndex].textColor = 'black';
+            this.gridStrctures[dayIndex][rowIndex][columnIndex].gridSpan = 1;
+            this.gridStrctures[dayIndex][rowIndex][columnIndex].gridColor = 'purple';
+            this.gridStrctures[dayIndex][rowIndex][columnIndex].rowPos = rowIndex;
+            this.gridStrctures[dayIndex][rowIndex][columnIndex].colPos = columnIndex;
+          // }
           // this.gridStrctures[0]
         });
       });
     });
+    console.log("Filled up gridStructure");
+    console.log(this.gridStrctures);
   }
 
 }
