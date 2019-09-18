@@ -24,12 +24,52 @@
           </div>
         </div>
       </mat-card> -->
-      <!-- <mat-card class="card-demo">
-          <mat-card-title>Grid with Minmax</mat-card-title>
+      <mat-card mat-elevation-z0 *ngIf="dataLoaded">
+          <!-- <mat-card-title>Grid with Minmax</mat-card-title> -->
           <mat-card-content class="containerX">
-            <div class="colorNested" style="height: auto;">
-              <div gdGap="10px" gdColumns="repeat(auto-fill, minmax(200px, 1fr))">
-                <div class="box" gdColumn="auto / span 2">A</div>
+            <div class="colorNested">
+              <div gdGap="10px" gdColumns="repeat(auto-fill, minmax(55px, 1fr))">
+                  <div style="background: transparent" class="box" gdColumn="auto / span 2"></div>
+                  <div class="box" gdColumn="auto / span 5" *ngFor="let day of workItem.Days">
+                    <span style="text-align: center">{{day.name}}</span>
+                  </div>
+                  <div class="box" gdColumn="auto / span 2">{{workItem.Classes[0].name}}</div>
+                  <div *ngFor="let class of workItem.Days">
+                      <div *ngFor="let class of workItem.Periods" class="box">
+                          <span style="text-align: center">S</span>
+                        </div>
+                  </div>
+
+
+                <!-- </div> -->
+                  <!-- <div *ngFor="let class of workItem.Classes">
+                      <div class="box" gdColumn="auto / span 2">
+                        <span style="text-align: center">{{class.name}}</span>
+                      </div>
+                      <div class="box" gdColumn="auto / span 2">
+                        <span style="text-align: center">{{class.name}}</span>
+                      </div>
+                  </div> -->
+                  <!-- <div class="box" gdColumn="auto / span 5" *ngFor="let day of workItem.Days">
+                    <span style="text-align: center">{{day.name}}</span>
+                  </div> -->
+                  <!-- <div *ngFor="let grid of ' '.repeat(noOfRows +1).split(''), let rowIndex = index">
+                      <div *ngFor="let grid of ' '.repeat(noOfDays +1).split(''), let dayIndex = index">
+                          <div style="margin-top: 10px" *ngFor="let grid of ' '.repeat(noOfCols +1).split(''), let colIndex = index" class="box">
+                          {{dayIndex}},{{rowIndex}},{{colIndex}}
+                          </div>
+                      </div>
+                  </div> -->
+                <!-- <div class="box" gdColumn="auto / span 2">A</div>
+                <div *ngFor="let grid of ' '.repeat(15).split(''), let colIndex = index" class="box">B</div>
+                <div class="box">B</div>
+                <div class="box">B</div>
+                <div class="box">B</div>
+                <div class="box">B</div>
+                <div class="box">B</div>
+                <div class="box">B</div>
+                <div class="box">B</div>
+                <div class="box">B</div>
                 <div class="box">B</div>
                 <div class="box">C</div>
                 <div class="box">D</div>
@@ -41,11 +81,11 @@
                 <div class="box">J</div>
                 <div class="box" gdColumn="auto / span 3">K</div>
                 <div class="box">L</div>
-                <div class="box">M</div>
+                <div class="box">M</div> -->
               </div>
             </div>
           </mat-card-content>
-        </mat-card> -->
+        </mat-card>
         <!-- <mat-card class='wrapper' style="width: 100%">
           <div *ngFor="let grid of ' '.repeat(noOfRows +1).split(''), let rowIndex = index">
               <div *ngFor="let grid of ' '.repeat(noOfDays +1).split(''), let dayIndex = index">
@@ -58,17 +98,17 @@
           </div>
       </mat-card> -->
 
-      <mat-card class='grid'>
+      <!-- <mat-card class='grid'>
           <div *ngFor="let grid of ' '.repeat(noOfRows +1).split(''), let rowIndex = index">
               <div *ngFor="let grid of ' '.repeat(noOfDays +1).split(''), let dayIndex = index">
-                <div style="margin-top: 10px" *ngFor="let grid of ' '.repeat(noOfCols +1).split(''), let colIndex = index">
-                  <div class="box e">
+                <div style="margin-top: 10px">
+                  <div *ngFor="let grid of ' '.repeat(noOfCols +1).split(''), let colIndex = index" class="box">
                   {{dayIndex}},{{rowIndex}},{{colIndex}}
                   </div>
                 </div>
               </div>
           </div>
-      </mat-card>
+      </mat-card> -->
 
         <!-- <mat-card class='wrapper' style="width: 100%">
             <div *ngFor="let grid of ' '.repeat(noOfRows).split(''), let i = index">

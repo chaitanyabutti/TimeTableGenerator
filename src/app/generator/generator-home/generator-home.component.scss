@@ -31,16 +31,21 @@
   // }
 
   .containerX {
-    width: 490px;
-    height: 210px;
+    width: auto;
+    height: auto;
     padding: 5px;
-    border: solid 1px #b6b6b6;
+    // border: solid 1px #b6b6b6;
     box-sizing: content-box !important;
   }
 
   .colorNested, .containerX {
     min-height: 384px;
-    background: #999999;
+    background: white;
+    // display: flex;
+    // flex-direction: row;
+    // flex-wrap: wrap;
+    // justify-content: flex-start;
+    // background: #999999;
   }
 
   .card-demo mat-card,
@@ -93,7 +98,8 @@
   }
   .wrapper {
       // align-content: center;
-      width: 100%;
+      width: auto;
+      height: auto;
       display: grid;
       grid-gap: 10px;
       grid-template-columns: repeat(auto-fill, minmax(100px, 1fr) ) ;
