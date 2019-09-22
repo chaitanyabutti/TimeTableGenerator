@@ -24,9 +24,16 @@
           </div>
         </div>
       </mat-card> -->
-      <mat-card mat-elevation-z0 *ngIf="dataLoaded">
+      <mat-card class="mat-elevation-z0" *ngIf="dataLoaded">
+          <div class='myGrid'>
+              <mat-card-content>
+                
+              </mat-card-content>
+          </div>
+      </mat-card>
+      <!-- <mat-card mat-elevation-z0 *ngIf="dataLoaded"> -->
           <!-- <mat-card-title>Grid with Minmax</mat-card-title> -->
-          <mat-card-content class="wrapper">
+          <!-- <mat-card-content class="wrapper">
             <div class="colorNested">
               <div gdGap="10px">
                   <div class="box" gdColumn="auto / span 2">.</div>
@@ -34,11 +41,11 @@
                     <span style="text-align: center">{{day.name}}</span>
                   </div>
                   <div *ngFor="let class of workItem.Classes; let classIndex = index">
-                      <div class="box" gdColumn="auto / span 2">{{gridStrctures[classIndex][0][0].textContent}}</div>
+                      <div class="box" gdColumn="auto / span 2">{{gridStrctures[classIndex][0][0].textContent}}</div> -->
                     <!-- <div class="box" style="margin-top: 5px" gdColumn="auto / span 1" *ngFor="let grid of gridStrctures[classIndex];let gridIndex = index;">
                       <span style="text-align: center">{{grid[gridIndex][0].textContent}}</span>
                     </div> -->
-                  </div>
+                  <!-- </div> -->
                   <!-- <div class="box" gdColumn="auto / span 2">{{workItem.Classes[0].name}}</div>
                   <div *ngFor="let class of workItem.Days">
                       <div *ngFor="let class of workItem.Periods" class="box">
@@ -88,10 +95,10 @@
                 <div class="box" gdColumn="auto / span 3">K</div>
                 <div class="box">L</div>
                 <div class="box">M</div> -->
-              </div>
+              <!-- </div>
             </div>
           </mat-card-content>
-        </mat-card>
+        </mat-card> -->
         <!-- <mat-card class='wrapper' style="width: 100%">
           <div *ngFor="let grid of ' '.repeat(noOfRows +1).split(''), let rowIndex = index">
               <div *ngFor="let grid of ' '.repeat(noOfDays +1).split(''), let dayIndex = index">
