@@ -26,19 +26,25 @@
       </mat-card> -->
       <mat-card mat-elevation-z0 *ngIf="dataLoaded">
           <!-- <mat-card-title>Grid with Minmax</mat-card-title> -->
-          <mat-card-content class="containerX">
+          <mat-card-content class="wrapper">
             <div class="colorNested">
-              <div gdGap="10px" gdColumns="repeat(auto-fill, minmax(55px, 1fr))">
-                  <div style="background: transparent" class="box" gdColumn="auto / span 2"></div>
+              <div gdGap="10px">
+                  <div class="box" gdColumn="auto / span 2">.</div>
                   <div class="box" gdColumn="auto / span 5" *ngFor="let day of workItem.Days">
                     <span style="text-align: center">{{day.name}}</span>
                   </div>
-                  <div class="box" gdColumn="auto / span 2">{{workItem.Classes[0].name}}</div>
+                  <div *ngFor="let class of workItem.Classes; let classIndex = index">
+                      <div class="box" gdColumn="auto / span 2">{{gridStrctures[classIndex][0][0].textContent}}</div>
+                    <!-- <div class="box" style="margin-top: 5px" gdColumn="auto / span 1" *ngFor="let grid of gridStrctures[classIndex];let gridIndex = index;">
+                      <span style="text-align: center">{{grid[gridIndex][0].textContent}}</span>
+                    </div> -->
+                  </div>
+                  <!-- <div class="box" gdColumn="auto / span 2">{{workItem.Classes[0].name}}</div>
                   <div *ngFor="let class of workItem.Days">
                       <div *ngFor="let class of workItem.Periods" class="box">
                           <span style="text-align: center">S</span>
                         </div>
-                  </div>
+                  </div> -->
 
 
                 <!-- </div> -->
