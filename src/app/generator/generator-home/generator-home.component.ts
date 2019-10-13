@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { DataService } from 'src/app/services/data.service';
 import { ConfigurationTemplate } from 'src/app/common/config-generator/configuration.model';
 import { Grid } from '../grid-model';
+import { ArrayDataSource } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-generator-home',
@@ -149,5 +150,9 @@ scheduleTimeTable() {
 //   console.log('Filled up gridStructure');
 //   console.log(this.gridStrctures);
 //   }
+
+getDays() {
+  return Array(this.workItem.Days).fill(0).map((x,i)=>i);
+}
 
 }

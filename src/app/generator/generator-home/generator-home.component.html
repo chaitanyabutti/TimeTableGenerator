@@ -24,12 +24,43 @@
           </div>
         </div>
       </mat-card> -->
-      <mat-card class="mat-elevation-z0" *ngIf="dataLoaded">
+      <!-- <mat-card class="mat-elevation-z0" *ngIf="dataLoaded">
           <div class='myGrid'>
-              <mat-card-content>
-                
-              </mat-card-content>
+              <div class="box" gdColumn="auto / span 2">Inside 1</div>
+            <div class="nestedGrid">
+                <div gdRow="auto">
+                  <div class="box" gdColumn="auto / span 2">Inside 1</div>
+                  <div class="box" gdColumn="auto / span 1">Inside 2</div>
+                  <div class="box" gdColumn="auto / span 1">Inside 3</div>
+                </div>
+            </div>
           </div>
+      </mat-card> -->
+      <mat-card *ngIf="dataLoaded">
+          <div class="wrapper">
+            <div class="outerNested">
+              <div class="box">Class</div>
+              <div class="box" *ngFor="let day of workItem.Days; let dayIndex=index">{{day.name}}</div>
+            </div>
+            </div>
+            <div *ngFor="let class of workItem.Classes; let classIndex=index">
+            <div class="wrapperClasses">
+              <!-- <div *ngFor="let number of [0,1,2]; let k=index"> -->
+                  <div style="margin-bottom: 10px" class="box">{{class.name}}</div>
+                  <div style="margin-bottom: 10px" *ngFor="let dayColomn of workItem.Days; let dayColumnIndex=index">
+                      <!-- <div *ngIf="dayColumnIndex === 0" class="box">{{class.name}}</div> -->
+                      <!-- <div *ngIf="dayColumnIndex !== 0"> -->
+                          <!-- <div *ngIf="dayColumnIndex > 0" class="box">{{class.name}}</div> -->
+                          <div>
+                        <div class="nested">
+                            <div class="box"  *ngFor="let period of workItem.Periods; let periodIndex=index">
+                                {{dayColumnIndex}}, {{periodIndex}}
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+            </div>
+            </div>
       </mat-card>
       <!-- <mat-card mat-elevation-z0 *ngIf="dataLoaded"> -->
           <!-- <mat-card-title>Grid with Minmax</mat-card-title> -->
